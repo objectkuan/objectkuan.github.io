@@ -1,0 +1,13 @@
+title:        Jiquan He
+tagline:      'Jiaquan He'
+university:   'Tsinghua University'
+department:   'OSCenter'
+description:  'A graduate student'
+url:          http://hejq.me
+author:
+  name:       'Jiaquan He'
+  email:      'objectkuan@gmail.com'
+markdown:     rdiscount
+permalink:    pretty
+pygments:     true
+paginate:     5
