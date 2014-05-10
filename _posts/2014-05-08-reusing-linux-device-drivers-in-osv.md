@@ -60,7 +60,7 @@ In free_same_cpu, of course, this can be guaranteed. But in free_different_cpu, 
 
 Anyway, we are sure that a preempt lock is used to protect the free operation. If we use an irq lock instead, any interrupt is disabled during the memory operation, then the problem may solve. 
 
-So I implement a lock with both preemption and irq feature, using some funciton from the DDE:
+So I implement a lock with both preemption and irq features, using some functions from the DDE:
 
 	class irq_preempt_lock_t {
 	private:
@@ -93,6 +93,17 @@ So I implement a lock with both preemption and irq feature, using some funciton 
 	    ~irq_preempt_lock_t() {}
 	};
 
-Then OSV with a Linux virtio block driver works in a single-cpu case. I am so happy about that, although it still crashes in the multi-cpu case.
+Then OSV with a Linux virtio block driver works in a single-cpu mode. I am so happy about that, although it still crashes in the multi-cpu mode.
 
+### Work Report ###
+
+Since free_same_cpu works fine, a way to fix this bug is to avoid the calling of free_different_cpu.
+
+I'm trying to set up a request queue for each cpu, storing the free requests on each cpu. Instead of calling free_different_cpu, a request enters the queue of the owner cpu of the victim object (the victim object means the object to be freed). 
+
+And when free_same_cpu is called, mempool goes through the queue of that cpu, to handle the freeing requests.
+
+This may cause other problems, maybe introducing performance overhead, accumulating useless data.
+
+However, just try it. That the beginning of my porting way.
 
