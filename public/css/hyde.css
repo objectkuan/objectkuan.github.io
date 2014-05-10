@@ -242,6 +242,7 @@ a:focus {
 }
 .masthead a {
   color: #fff;
+  text-decoration: none;
 }
 
 /* Footer area of masthead */
