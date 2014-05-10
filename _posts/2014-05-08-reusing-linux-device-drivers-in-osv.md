@@ -23,3 +23,76 @@ After analysing the codes, I try the simple case that only the Linux virtio bloc
 I found that while thread A is doing something on the mempool (alloc or free), an interrupt is fired and the interrupt routine also performs some operations on the mempool.
 
 OSV's mempool management doesn't provide enough protection in such case.
+
+
+## Working report ##
+
+The backtrace while OSV aborts indicates that the error arises in the function *free* in core/mempool.cc. So why not have a look at the codes there.
+
+	void pool::free(void* object)
+	{
+	    trace_pool_free(this, object);
+	    WITH_LOCK(preempt_lock) {
+	
+	        free_object* obj = static_cast<free_object*>(object);
+	        page_header* header = to_header(obj);
+	        unsigned obj_cpu = header->cpu_id;
+	        unsigned cur_cpu = mempool_cpuid();
+	
+	        if (obj_cpu == cur_cpu) {
+	            // free from the same CPU this object has been allocated on.
+	            free_same_cpu(obj, obj_cpu);
+	        } else {
+	            // free from a different CPU. we try to hand the buffer
+	            // to the proper worker item that is pinned to the CPU that this buffer
+	            // was allocated from, so it'll free it.
+	            // assert(arch::irq_enabled());
+	            free_different_cpu(obj, obj_cpu);
+	        }
+	    }
+	}
+
+When free is called, the object to be reclaimed may be owned by the current cpu or another one. So OSV mempool perform this action in two ways, in *free_samp_cpu* and *free_different_cpu*.
+
+And as we can see, the operation in either case is protected by a preempt lock, which means that, during the freeing process, preempt is disabled.
+
+In free_same_cpu, of course, this can be guaranteed. But in free_different_cpu, the preempt lock will be dropped for a while.
+
+Anyway, we are sure that a preempt lock is used to protect the free operation. If we use an irq lock instead, any interrupt is disabled during the memory operation, then the problem may solve. 
+
+So I implement a lock with both preemption and irq feature, using some funciton from the DDE:
+
+	class irq_preempt_lock_t {
+	private:
+	spinlock_t spinlock;
+
+	int dde_spin_lock_irqsave() {
+	    int ret = arch::irq_enabled();
+	    arch::irq_disable_notrace();
+	    spinlock.lock();
+	    return ret;
+	}
+
+	void dde_spin_unlock_irqrestore(int enabled) {
+	    spinlock.unlock();
+	    if (enabled)
+		arch::irq_enable();
+	}
+
+	public:
+	    void lock() {
+		sched::preempt_disable();
+		irq_preempt_lock_irq = dde_spin_lock_irqsave();
+	    }
+	    void unlock() {
+		dde_spin_unlock_irqrestore(irq_preempt_lock_irq);
+		sched::preempt_enable();
+	    }
+
+	    irq_preempt_lock_t()  {}
+	    ~irq_preempt_lock_t() {}
+	};
+
+Then OSV with a Linux virtio block driver works in a single-cpu case. I am so happy about that, although it still crashes in the multi-cpu case.
+
+
