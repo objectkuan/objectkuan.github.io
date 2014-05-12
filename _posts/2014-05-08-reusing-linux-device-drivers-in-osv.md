@@ -105,5 +105,24 @@ And when free_same_cpu is called, mempool goes through the queue of that cpu, to
 
 This may cause other problems, maybe introducing performance overhead, accumulating useless data.
 
-However, just try it. That the beginning of my porting way.
+### Work Reprot ###
 
+According to the design, I simply try to add an array of std::queues in mempool class.
+
+	typedef std::queue<free_object*> delegate_queue;
+	delegate_queue dqueues[sched::max_cpus];
+
+And modify the free function:
+
+	delegate_queue& dq = dqueues[obj_cpu];
+	if (obj_cpu == cur_cpu) {
+		while(!dq.empty()) {
+			free_same_cpu(dq.front(), obj_cpu);
+			dq.pop();
+		}
+		free_same_cpu(obj, obj_cpu);
+	} else {
+		dq.push(obj);
+	}
+
+The irq_preemt_lock is not neccessary now, and with the origin preempt_lock, the Linux virtio block driver works in OSV.
