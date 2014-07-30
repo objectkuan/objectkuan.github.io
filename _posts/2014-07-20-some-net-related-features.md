@@ -1,24 +1,32 @@
+---
+layout: post
+title: Some Net-related Features
+---
 
-*(0) The SMP Affinity of IRQ*
+##(0) The SMP Affinity of IRQ
 
-*Description*: bind an IRQ to a core, when an interrupt is triggered on an IRQ, it'll be handled by a certain core
+###Description: 
 
-*Checking*:
+bind an IRQ to a core, when an interrupt is triggered on an IRQ, it'll be handled by a certain core
+
+###Checking:
 
 If not set, the %si of some core(s) may run high.
 
 IRQ balance should be disabled to avoid modification of affinities. 
 
-*Setting*:
+###Setting:
 
 `echo [mask] > /proc/irq/[irq_no]/smp_affinity`
 
 
-*(1) Interrupt Throttle Rate*
+##(1) Interrupt Throttle Rate
 	
-*Description*: Control the interrupt trigger rate of a NIC, to let the kernel read more packages from NIC for one interrupt.
+###Description: 
 
-*Checking*:
+Control the interrupt trigger rate of a NIC, to let the kernel read more packages from NIC for one interrupt.
+
+###Checking:
 
 The interrupt rate of a NIC looks abnormal, for example, very high, if this is not set properly.
 
@@ -28,44 +36,50 @@ The interrupt rate of a NIC looks abnormal, for example, very high, if this is n
 
 In my case, 3000 is an acceptable value.
 
-*Setting*:
+###Setting:
 
 The `options ixgbe` in `/etc/modprobe.d/modprobe.conf`
 
 Also can be set by `ethtool -C [eth5] rx-usecs 333`
 
 
-*(2) ATR*
+##(2) ATR
 
-*Description*: Implemented by hardware, it samples the packages, for example, while they are sent by NIC. It takes a quintuple as the key, a CPU core as the value to store entries in a flow table. When a package arrive, the NIC will scan the flow table for a target core to gain connection locality.
+###Description:
 
-*Checking*:
+Implemented by hardware, it samples the packages, for example, while they are sent by NIC. It takes a quintuple as the key, a CPU core as the value to store entries in a flow table. When a package arrive, the NIC will scan the flow table for a target core to gain connection locality.
+
+###Checking:
 
 `ethtool -S [eth5] | grep -i fdir` to check the hits and misses
 
-*Setting*:
+###Setting:
 
 For Intel 82599, ATR will be used when NTUPLE is down.
 
 
-*(3) NTUPLE*
+##(3) NTUPLE
 
-*Description*: Writing rules to dispatch received packages to certain queues.
+###Description: 
 
-*Checking*:
+Writing rules to dispatch received packages to certain queues.
+
+###Checking:
 
 `ethtool -k [eth5]` to check nutple is whether on or off.
 
-*Setting*:
+###Setting:
 
 ethtool -K eth5 ntuple [on|off]
 
 
-*(4) RSS*
+##(4) RSS
 
-*Description*: Receiving queues of a NIC. when a package arrives, it hash the quintuple to a certain IRQ.
+###Description: 
 
-*Checking*:
+Receiving queues of a NIC. when a package arrives, it hash the quintuple to a certain IRQ.
+
+###Checking:
 
 If NTUPLE is turned on (so ATR is skipped) but no rule is hit
 
@@ -75,7 +89,7 @@ If NTUPLE is turned on (so ATR is skipped) but no rule is hit
 
 Meanwhile `ethtool -S [eth5] | grep -i fdir` will show some misses.
 
-*Setting*:
+###Setting:
 
 Turn on NTUPLE: ethtool -K eth5 ntuple on
 
