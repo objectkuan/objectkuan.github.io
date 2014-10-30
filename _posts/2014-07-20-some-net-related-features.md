@@ -3,7 +3,7 @@ layout: post
 title: Some Net-related Features
 ---
 
-During my intership, I learn some network related features from SINA. Sometimes they make a difference to the performance if they are taken into consider while tuning.
+During my internship, I learn some network related features from SINA. Sometimes they make a difference to the performance if they are taken into consideraion while tuning.
 
 <!--more-->
 
