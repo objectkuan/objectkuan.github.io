@@ -40,6 +40,14 @@ Learn more at http://andhyde.com or https://github.com/mdo/hyde.
  *
  * Update the foundational and global aspects of the page.
  */
+@font-face {
+    font-family: 'MenloHJQ';
+    src: url('../fonts/menlo-webfont.eot');
+    src: url('../fonts/menlo-webfont.eot') format('embedded-opentype'),
+         url('../fonts/menlo-webfont.woff') format('woff'),
+         url('../fonts/menlo-webfont.ttf') format('truetype'),
+         url('../fonts/menlo-webfont.svg') format('svg');
+}
 
 * {
   -webkit-box-sizing: border-box;
@@ -122,7 +130,7 @@ abbr {
 
 code,
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: "MenloHJQ", Monaco, "Courier New", monospace;
 }
 code {
   padding: .25em .5em;
