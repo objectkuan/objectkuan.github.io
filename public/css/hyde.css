@@ -42,11 +42,7 @@ Learn more at http://andhyde.com or https://github.com/mdo/hyde.
  */
 @font-face {
     font-family: 'MenloHJQ';
-    src: url('../fonts/menlo-webfont.eot');
-    src: url('../fonts/menlo-webfont.eot') format('embedded-opentype'),
-         url('../fonts/menlo-webfont.woff') format('woff'),
-         url('../fonts/menlo-webfont.ttf') format('truetype'),
-         url('../fonts/menlo-webfont.svg') format('svg');
+    src: url('../fonts/menlo.ttf') format('truetype');
 }
 
 * {
