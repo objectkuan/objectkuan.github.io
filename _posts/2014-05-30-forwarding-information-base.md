@@ -3,9 +3,9 @@ layout: post
 title: Forwarding Information Base
 ---
 
-## Introduction
-
 In the IPv4 routing subsystem, several critical structures should be discussed.
+
+<!--more-->
 
 ## fib_table##
 

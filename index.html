@@ -13,8 +13,20 @@ layout: default
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.excerpt }}
-    <!-- {{ post.content }} -->
+    <div class="post-excerpt">
+      {% if post.content contains '<!--more-->' %}
+        
+        {{ post.content | split:'<!--more-->' | first }}
+        
+      {% else %}
+
+        {{ post.content }}
+        
+      {% endif %}
+
+    </div>
+    <p class="read-all">&nbsp;&nbsp;<a href="{{ post.url }}">Read all &gt;&gt;</a></p>
+    <hr>
   </div>
   {% endfor %}
 </div>

@@ -318,6 +318,17 @@ a:focus {
  * Each post is wrapped in `.post`. Used on default and post layouts.
  */
 
+.posts .post .post-excerpt {
+  padding: 10px 20px 10px;
+  color: #565552;
+  background-color: #FDFDFD;
+  border: 1px solid #F2F2F2;
+}
+.posts .post .read-all {
+  color: #232220;
+  margin-top: 5px;
+}
+
 /* Single post */
 .post {
   margin-bottom: 40px;

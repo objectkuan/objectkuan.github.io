@@ -3,6 +3,10 @@ layout: post
 title: A Packet's Path 
 ---
 
+A nice backtrace captured by XF which shows a network packet's calling path in Linux kernel protocol stack.
+
+<!--more-->
+
 	#0 [ffff8800282030b0] machine_kexec at ffffffff8103210b
 	#1 [ffff880028203110] crash_kexec at ffffffff810b7f05
 	#2 [ffff8800282031e0] oops_end at ffffffff814ea360

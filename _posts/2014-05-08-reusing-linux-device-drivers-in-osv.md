@@ -9,6 +9,8 @@ And OSV kernel is not simple.
 
 Tough days start from now on.
 
+<!--more-->
+
 ## Working report ##
 
 Now, Linux virtio block and net drivers has been copied to the OSV source. And with the help of DDE (Device Driver Environment), compiling and linking is not a problem now, i.e. the syntax problem is solved.

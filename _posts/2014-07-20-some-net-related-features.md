@@ -3,6 +3,10 @@ layout: post
 title: Some Net-related Features
 ---
 
+During my intership, I learn some network related features from SINA. Sometimes they make a difference to the performance if they are taken into consider while tuning.
+
+<!--more-->
+
 ##(0) The SMP Affinity of IRQ
 
 ###Description: 

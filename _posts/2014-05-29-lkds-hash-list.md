@@ -4,7 +4,9 @@ title: Linux Kernel Data Structure - Hash List
 categories: [Linux Kernel, Data Structure]
 ---
 
-Hash lists are different from normal doubly linked lists.
+In Linux kernel, hash lists are different from normal doubly linked lists.
+
+<!--more-->
 
 As we discussed before, dobuly linked lists have a unique node type regardless of the head or the others, which contains a prev pointer and a next pointer.
 

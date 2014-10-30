@@ -3,15 +3,13 @@ layout: post
 title: LKP Tests Notes
 ---
 
-
-
-## Introduction
-
 LKP-Tests is a linux kernel performance testing framework authored by Fengguang Wu @ Intel.
 
 Codes gitted from
 
 `git://git.kernel.org/pub/scm/linux/kernel/git/wfg/lkp-tests.git`
+
+<!--more-->
 
 ## setup-local
 
@@ -61,3 +59,4 @@ With the scripts in LKP_HOME/pack, the LKP_HOME/sbin/pack works. It just call th
 
 ## run-local
 
+	# TO BE CONTINUED
