@@ -328,8 +328,10 @@ a:focus {
   border: 1px solid #F2F2F2;
 }
 .posts .post .read-all {
-  color: #232220;
-  margin-top: 5px;
+  margin-top: 10px;
+}
+.posts .post .read-all a {
+  color: #555555;
 }
 
 /* Single post */
