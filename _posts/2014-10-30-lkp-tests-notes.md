@@ -78,3 +78,5 @@ Then `testcase` is iterated. For each `<key, value>` in testcase
 > - Otherwise, the value is a Hash, and the case can only be a Hash of all system monitors. Then take the Hash from `testcase`, and use it to run `run-job` again.
 
 That means now there are two processes. One is to run the monitors, and the other is to run the benchmark.
+
+	# TO BE CONTINUED

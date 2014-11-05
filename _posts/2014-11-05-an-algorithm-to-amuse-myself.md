@@ -5,7 +5,7 @@ title: An Algorithm to Amuse Myself
 
 Today we three were very boring. So boring that we casually made out a question. We have n characters (just think n <= 26 and they are 'a', 'b', ... 'a' + n - 1). What is the kth plalindrome formed by that n characters without duplicated characters? (It is only OK if it is duplicated because of palindrome, so in the palindrome each charaters can appear at most twice).
 
-<!-- more -->
+<!--more-->
 
 ## The story
 
