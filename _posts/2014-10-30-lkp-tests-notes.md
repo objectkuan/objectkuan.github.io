@@ -59,4 +59,22 @@ With the scripts in LKP_HOME/pack, the LKP_HOME/sbin/pack works. It just call th
 
 ## run-local
 
-	# TO BE CONTINUED
+When `run-local` is run, **2** major tasks are carried out: running the benchmark and starting the system monitors. The details are store in a class name `Job` in the file `lib/job.rb`.
+
+> How to store a job? After started, the scipts receive a yaml file from the cmd argument. `Job.load(jobfile)` is called to read and load the job configuration and store the job profile in a member named @job.
+
+In fact, in `run-local`, the scripts only create the result directory with the job information. And the very scripts that matter are written in `run-job`.
+
+## run-job
+
+In `run-job`, the job yaml file is loaded into a hash variable named `testcase`.
+
+And all files in `LKP_SRC/setup`, `LKP_SRC/monitors`, `LKP_SRC/tests` are read into a program cache `$programs`.
+
+Then `testcase` is iterated. For each `<key, value>` in testcase
+
+> - If the key is in the $programs cache, skip
+> - If the value is not a Hash, skip
+> - Otherwise, the value is a Hash, and the case can only be a Hash of all system monitors. Then take the Hash from `testcase`, and use it to run `run-job` again.
+
+That means now there are two processes. One is to run the monitors, and the other is to run the benchmark.
