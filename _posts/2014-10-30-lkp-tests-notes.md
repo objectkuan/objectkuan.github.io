@@ -79,4 +79,6 @@ Then `testcase` is iterated. For each `<key, value>` in testcase
 
 That means now there are two processes. One is to run the monitors, and the other is to run the benchmark.
 
-	# TO BE CONTINUED
+Although the two processes are isolated, they both call `run_program(program, env)` (in `run-job`) to run each command.
+
+After filtered by a function `for_each_program` defined in `job.rb`, `run_program` recceives only the commands in the `$programs` cache.
