@@ -73,9 +73,9 @@ build:
 install:
 	Run make install-exec if a makefile exists.
 pack_deb: 
-	SKIP
+	Pack the benchmark into a deb package.
 pack:
-	SKIP
+	Pack /lkp/benchmarks/$BM_NAME/* to /tmp/${BM_NAME}.cgz
 post_cleanup:
 	Do nothing.
 cleanup:
