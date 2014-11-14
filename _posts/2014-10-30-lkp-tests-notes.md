@@ -57,6 +57,31 @@ The scripts that download and install benchmarks are put in LKP_HOME/pack. LKP_H
 
 With the scripts in LKP_HOME/pack, the LKP_HOME/sbin/pack works. It just call the `download`, `build` and `install`, and then `pack_deb`, `cleanup`.
 
+**The `default` scripts**
+
+```
+git_clone_update $url $dir:
+	Clone url into dir.
+pre_download:
+	Do nothing.
+download:
+	Run wget --no-clobber $WEB_URL, and extract it if it's a tar.
+patch_source:
+	If $LKP_HOME/pack/${BM_NAME}.patch exists, then apply it.
+build:
+	Enter $source_dir, patch_source. Run ./configure $CONFIGURE_FLAGS if configuration file is executable. Make if a makefile exists.
+install:
+	Run make install-exec if a makefile exists.
+pack_deb: 
+	SKIP
+pack:
+	SKIP
+post_cleanup:
+	Do nothing.
+cleanup:
+	Run rm -f  "/tmp/${source_package}" && rm -fr "/tmp/${source_dir}".
+```
+
 ## run-local
 
 When `run-local` is run, **2** major tasks are carried out: running the benchmark and starting the system monitors. The details are store in a class name `Job` in the file `lib/job.rb`.
@@ -82,3 +107,7 @@ That means now there are two processes. One is to run the monitors, and the othe
 Although the two processes are isolated, they both call `run_program(program, env)` (in `run-job`) to run each command.
 
 After filtered by a function `for_each_program` defined in `job.rb`, `run_program` recceives only the commands in the `$programs` cache.
+
+
+## stat
+
