@@ -11,7 +11,7 @@ Codes gitted from
 
 <!--more-->
 
-## setup-local
+## 1. setup-local
 
 ### make_wakeup
 
@@ -82,15 +82,15 @@ cleanup:
 	Run rm -f  "/tmp/${source_package}" && rm -fr "/tmp/${source_dir}".
 ```
 
-## run-local
+## 2. run-local
 
 When `run-local` is run, **2** major tasks are carried out: running the benchmark and starting the system monitors. The details are store in a class name `Job` in the file `lib/job.rb`.
 
 > How to store a job? After started, the scipts receive a yaml file from the cmd argument. `Job.load(jobfile)` is called to read and load the job configuration and store the job profile in a member named @job.
 
-In fact, in `run-local`, the scripts only create the result directory with the job information. And the very scripts that matter are written in `run-job`.
+In fact, in `run-local`, the scripts only create the result directory with the job information and set the environment information of the local machine. More scripts that matter are written in `run-job`.
 
-## run-job
+## 3. run-job
 
 In `run-job`, the job yaml file is loaded into a hash variable named `testcase`.
 
@@ -102,12 +102,20 @@ Then `testcase` is iterated. For each `<key, value>` in testcase
 > - If the value is not a Hash, skip
 > - Otherwise, the value is a Hash, and the case can only be a Hash of all system monitors. Then take the Hash from `testcase`, and use it to run `run-job` again.
 
-That means now there are two processes. One is to run the monitors, and the other is to run the benchmark.
+That means now there are two processes. One is running the monitors, and the other is preparing to run the benchmark.
 
 Although the two processes are isolated, they both call `run_program(program, env)` (in `run-job`) to run each command.
 
 After filtered by a function `for_each_program` defined in `job.rb`, `run_program` recceives only the commands in the `$programs` cache.
 
+## 4. post-run
 
-## stat
+The scripts `post-run` is used to wait for the monitors and pipe to quit, and then copy the following from the $TMP directory to the result diretory:
+
+> - The results of benchmarks and monitors
+> - The generated files: time, boottime, env.yaml, stdout, stderr, output
+
+## 5. extract-stats
+
+
 
