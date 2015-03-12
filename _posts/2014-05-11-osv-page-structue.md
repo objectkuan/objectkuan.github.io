@@ -1,19 +1,13 @@
 ---
 layout: post
-title: OSV Mempool Analysis 
+title: OSV Page Structure 
 ---
 
-In order to modify the mechanism of OSV's mempool, it's good to anaylize its implementation first.
+While modifying the mechanism of OSV's mempool, I learn the structure of a page in OSV.
 
 <!--more-->
 
-That is the *mempool.cc*.
-
-### add_page ###
-
-The function add_page allocates a page, initialize it and add it to the free list *_free*.
-
-From this function we can get the structure of a page in OSV.
+In *mempool.cc*, according to `add_page`, which allocates a page, initializes it and adds it to the free list `_free`, the structure of a page in OSV looks like:
 
 	|<----------- page size ---------->|
 	|------|-----------|---|-----------|

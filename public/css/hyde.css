@@ -40,6 +40,10 @@ Learn more at http://andhyde.com or https://github.com/mdo/hyde.
  *
  * Update the foundational and global aspects of the page.
  */
+@font-face {
+    font-family: 'MenloHJQ';
+    src: url('../fonts/menlo.ttf') format('truetype');
+}
 
 * {
   -webkit-box-sizing: border-box;
@@ -122,7 +126,7 @@ abbr {
 
 code,
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: "MenloHJQ", Monaco, "Courier New", monospace;
 }
 code {
   padding: .25em .5em;
@@ -130,6 +134,9 @@ code {
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
+  word-wrap: break-word;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
 }
 pre {
   display: block;
@@ -325,8 +332,10 @@ a:focus {
   border: 1px solid #F2F2F2;
 }
 .posts .post .read-all {
-  color: #232220;
-  margin-top: 5px;
+  margin-top: 10px;
+}
+.posts .post .read-all a {
+  color: #555555;
 }
 
 /* Single post */
@@ -344,6 +353,10 @@ a:focus {
   display: block;
   margin: -10px 0 10px;
   color: #9a9a9a;
+}
+
+.post-back {
+  margin: 10px 0 10px;
 }
 
 /* Related posts */
