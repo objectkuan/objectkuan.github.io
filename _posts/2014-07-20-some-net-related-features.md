@@ -28,7 +28,7 @@ IRQ balance should be disabled to avoid modification of affinities.
 	
 ###Description: 
 
-Control the interrupt trigger rate of a NIC, to let the kernel read more packages from NIC for one interrupt.
+Control the interrupt trigger rate of a NIC, to let the kernel read more packets from NIC for one interrupt.
 
 ###Checking:
 
@@ -51,7 +51,7 @@ Also can be set by `ethtool -C [eth5] rx-usecs 333`
 
 ###Description:
 
-Implemented by hardware, it samples the packages, for example, while they are sent by NIC. It takes a quintuple as the key, a CPU core as the value to store entries in a flow table. When a package arrive, the NIC will scan the flow table for a target core to gain connection locality.
+Implemented by hardware, it samples the packets, for example, while they are sent by NIC. It takes a quintuple as the key, a CPU core as the value to store entries in a flow table. When a packet arrive, the NIC will scan the flow table for a target core to gain connection locality.
 
 ###Checking:
 
@@ -66,7 +66,7 @@ For Intel 82599, ATR will be used when NTUPLE is down.
 
 ###Description: 
 
-Writing rules to dispatch received packages to certain queues.
+Writing rules to dispatch received packets to certain queues.
 
 ###Checking:
 
@@ -81,7 +81,7 @@ ethtool -K eth5 ntuple [on|off]
 
 ###Description: 
 
-Receiving queues of a NIC. when a package arrives, it hash the quintuple to a certain IRQ.
+Receiving queues of a NIC. when a packet arrives, it hash the quintuple to a certain IRQ.
 
 ###Checking:
 
