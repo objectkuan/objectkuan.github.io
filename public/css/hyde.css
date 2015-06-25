@@ -134,9 +134,8 @@ code {
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
-  /* word-wrap: break-word; */
-  /* white-space: -moz-pre-wrap; */
-  /* white-space: pre-wrap; */
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
   word-wrap: normal;
   white-space: pre;
 }
@@ -151,6 +150,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   background-color: #f9f9f9;
+  overflow: scroll;
 }
 pre code {
   padding: 0;
