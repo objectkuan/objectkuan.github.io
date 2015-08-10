@@ -1,6 +1,7 @@
 ---
 layout: post
 title: LKP Tests Notes
+tags: [Linux, Testing]
 ---
 
 LKP-Tests is a linux kernel performance testing framework authored by Fengguang Wu @ Intel.

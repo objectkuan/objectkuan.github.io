@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Some Net-related Features
+tags: [Linux, Networks]
 ---
 
 During my internship, I learn some network related features from SINA. Sometimes they make a difference to the performance if they are taken into consideraion while tuning.

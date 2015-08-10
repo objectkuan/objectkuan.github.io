@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Something about Cache
+tags: Linux
 ---
 
 Currently I'm optimizing the performance of the well-known in-memory key-value server - redis, from the system and network perspectives.

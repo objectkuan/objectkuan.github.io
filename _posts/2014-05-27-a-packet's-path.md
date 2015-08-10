@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A Packet's Path 
+tags: [Linux, Networks]
 ---
 
 A nice backtrace captured by XF which shows a network packet's calling path in Linux kernel protocol stack.

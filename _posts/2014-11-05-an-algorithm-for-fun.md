@@ -1,6 +1,7 @@
 ---
 layout: post
 title: An Algorithm for Fun
+categories: algorithm
 ---
 
 Today we three were very boring. So boring that we casually made out a question. We have n characters (just suppose n <= 26 and they are 'a', 'b', ... 'a' + n - 1). What is the kth plalindrome formed by that n characters unduplicatedly? (It is OK only if one char is duplicated because of palindrome, that is to say, each charater can appear at most twice).

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux Kernel Data Structure - Doubly Linked List
-categories: [Linux Kernel, Data Structure]
+tags: [Linux, Data Structure]
 ---
 
 The doubly linked list is a commonly used data structure. The Linux kernel define the doubly linked list in the file <include/list/list.h>.

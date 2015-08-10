@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Forwarding Information Base
+tags: [Linux, Networks]
 ---
 
 In the IPv4 routing subsystem, several critical structures should be discussed.

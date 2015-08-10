@@ -1,6 +1,7 @@
 ---
 layout: post
 title: OSV Page Structure 
+tags: OSV
 ---
 
 While modifying the mechanism of OSV's mempool, I learn the structure of a page in OSV.

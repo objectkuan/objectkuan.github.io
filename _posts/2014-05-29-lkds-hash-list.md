@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux Kernel Data Structure - Hash List
-categories: [Linux Kernel, Data Structure]
+tags: [Linux Kernel, Data Structure]
 ---
 
 In Linux kernel, hash lists are different from normal doubly linked lists.

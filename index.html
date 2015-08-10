@@ -29,6 +29,13 @@ layout: default
     <hr>
   </div>
   {% endfor %}
+  {% for tag in site.tags %}
+    <li>
+      <a href="/{{ tag | first | slugize }}/">
+        {{ tag | first }}
+      </a>
+    </li>
+  {% endfor %}
 </div>
 
 <!-- Pagination links -->
