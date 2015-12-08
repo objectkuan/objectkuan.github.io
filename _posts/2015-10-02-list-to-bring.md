@@ -3,6 +3,8 @@ layout: post
 title: 带
 ---
 
+<input type="file" text="a"/>
+
 |衣服|带|
 | ------------- | ------------- |
 |短袖（3~4）|4|
